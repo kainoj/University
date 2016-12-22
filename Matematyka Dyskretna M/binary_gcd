@@ -1,0 +1,33 @@
+#include <stdlib.h>
+#include <stdio.h>
+
+int binary_gcd(int a, int b) {
+	printf("a = %d \t b= %d \n", a,b );
+	if ( a == 0 ) return b;
+	if ( b == 0 ) return a;
+
+	if ( (a % 2 == 0) && (b % 2 ==0) )
+		return 2*binary_gcd(a >> 1, b >> 1);
+
+	if ( a % 2 == 0 && b % 2 == 1)
+		return binary_gcd( a >> 1, b);
+
+	if ( a % 2 == 1 && b % 2 == 0)
+		return binary_gcd(a, b >> 1);
+
+	if( a > b )
+		return binary_gcd(a-b, b);
+
+	return binary_gcd(a, b-a);
+
+
+
+}
+
+int main() {
+	int a = 49;
+	int b = 7;
+	printf(" gcd(%d, %d) = %d \n", a, b, binary_gcd(a,b));
+
+	return 0;
+}
